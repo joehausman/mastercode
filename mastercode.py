@@ -44,16 +44,24 @@ def white_check(answer, guess):
         i += 1
     return correct
 
-def print_row(correct_black, correct_white, guess):
-    CT = str(CURR_TURN)
+# def print_row(correct_black, correct_white, guess):
+#     CT = str(CURR_TURN)
+#     cb = str(correct_black)
+#     cw = str(correct_white)
+#     gu = ''.join(guess)
+#     print(CT + '|' + cb + cw + '|' + gu)
+
+def print_row_start():
+    print(str(CURR_TURN) + '|', end = '')
+
+def print_row_end(correct_black, correct_white):
     cb = str(correct_black)
     cw = str(correct_white)
-    gu = ''.join(guess)
-    print(CT + '|' + cb + cw + '|' + gu)
+    print('|' + cb + cw)
 
 def print_code():
     global CODE
-    print('code:' + ''.join(CODE))
+    print('\n  ' + ''.join(CODE) + ' <-- code\n')
 
 def win_game():
     # @TODO: print win state thingy
@@ -74,7 +82,7 @@ def setup():
     global CODE
     CODE = generate_code()
     # print_code()    # DEBUGGING
-    print('-|BW|----')
+    print('-|----|BW')
 
 def run():
     global CURR_TURN
@@ -82,16 +90,19 @@ def run():
     while CURR_TURN < MAX_TURNS:
         global CODE
         answer = CODE.copy()
+        print_row_start()
         # print_code()    # DEBUGGING
         # @TODO: get player input
         guess = generate_code()    # DEBUGGING
+        print(''.join(guess), end = '') # DEBUGGING
         guess_copy = guess.copy()
         correct_black, answer, guess_copy = black_check(answer, guess_copy)
         if correct_black == 4:
             win_game()
 
         correct_white = white_check(answer, guess_copy)
-        print_row(correct_black, correct_white, guess)
+        # print_row(correct_black, correct_white, guess)
+        print_row_end(correct_black, correct_white)
 
         CURR_TURN += 1
 
