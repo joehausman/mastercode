@@ -25,22 +25,15 @@ def black_check(answer, guess):
 def white_check(answer, guess):
     correct = 0
     i = 0
-    # count = 0   # DEBUGGING
-    # outercount = 0  # DEBUGGING
     while i < 4:
         j = 0
-        # outercount += 1 # DEBUGGING
         while j < 4:
-            # print('a[i]: ' + answer[i] + ' g[j]: ' + guess[j]) # DEBUGGING
-            # count += 1  # DEBUGGING
             if answer[i] == guess[j]:
                 correct += 1
                 answer[i] = 'X' # placeholder
                 guess[j] = 'Y'  # different placeholder
             j += 1
         i += 1
-    # print(count)    # DEBUGGING
-    # print(outercount)   # DEBUGGING
     return correct
 
 #-----------------------------------------------------------
